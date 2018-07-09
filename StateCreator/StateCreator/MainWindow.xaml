@@ -1,0 +1,135 @@
+﻿<Window x:Class="StateCreator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StateCreator"
+        mc:Ignorable="d"
+        Title="State Pattern Tool" Height="500" Width="900">
+	
+	<StackPanel Orientation="Horizontal" 
+				Background="SlateGray"
+				HorizontalAlignment="Left" 
+				TextBlock.FontSize="18">
+		<StackPanel.Resources>
+			<Style TargetType="Button">
+				<Setter Property="Height" Value="35"/>
+			</Style>
+			<Style TargetType="Label">
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+				<Setter Property="HorizontalContentAlignment" Value="Right"/>
+				<Setter Property="Width" Value="125"/>
+				<Setter Property="Height" Value="35"/>
+			</Style>
+			<Style TargetType="TextBox">
+				<Setter Property="Background" Value="LightGray"/>
+				<Setter Property="Margin" Value="5 0 5 0"/>
+				<Setter Property="FontSize" Value="17"/>
+				<Setter Property="Width" Value="200"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+			</Style>
+			<Style TargetType="StackPanel" x:Key="AllMargin">
+				<Setter Property="Margin" Value="5 10" />
+			</Style>
+			<Style TargetType="StackPanel" x:Key="SideMargin">
+				<Setter Property="Margin" Value="5 0 5 0" />
+			</Style>
+			<Style TargetType="StackPanel" x:Key="VertMargin">
+				<Setter Property="Margin" Value="0 5 0 10" />
+			</Style>
+		</StackPanel.Resources>
+		<StackPanel Style="{StaticResource AllMargin}">
+			<StackPanel Orientation="Horizontal"
+						Style="{StaticResource VertMargin}">
+				<Label Content="Source Folder:"/>
+				<TextBox x:Name="TxtSourcePath"
+						 Text="ex: C:\Users\kmurphy\Documents\Drive\CSC230_Computational_Theory\MurphyK_CompTheory\MurphyK_RegexStateMachine"
+						 />
+				<Button x:Name="BtnGetSource" 
+						Content="Find Source"
+						Click="BtnGetSource_Click"
+						Width="100"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Namespace:"/>
+				<TextBox x:Name="TxtNamespace" 
+						 Text="StateMachine"/>
+				<Label Content=".Models"
+					   HorizontalContentAlignment="Left"/>
+			</StackPanel>
+
+			<StackPanel Margin="5 50 5 0">
+				<StackPanel Orientation="Horizontal"
+							Style="{StaticResource VertMargin}">
+					<Label Content="Visibility:"/>
+					<ComboBox x:Name="CmbVisibility" 
+							  Margin="5 0 5 0"
+							  Width="100" 
+							  Text="public">
+						<ComboBoxItem Content="public"/>
+						<ComboBoxItem Content="protected"/>
+						<ComboBoxItem Content="private"/>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Style="{StaticResource VertMargin}">
+					<Label Content="Return Type:"/>
+					<TextBox x:Name="TxtReturnType" 
+							 Text="void"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Style="{StaticResource VertMargin}">
+					<Label Content="Method Name:"/>
+					<TextBox x:Name="TxtMethodName" 
+							 Text="MethodName"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Style="{StaticResource VertMargin}">
+					<Label Content="Method Args:"/>
+					<TextBox x:Name="TxtArguments" 
+							 Text="Parameters"/>
+				</StackPanel>
+
+				<TextBlock x:Name="TxtAbstractSig" Background="Gray"
+						   Width="450"
+						   Height="30"
+						   TextAlignment="Center"
+						   Margin="0 10 0 0">
+					<TextBlock.Text>
+						<MultiBinding StringFormat="{}{0}   abstract   {1}   {2}({3})">
+							<Binding ElementName="CmbVisibility" Path="Text"/>
+							<Binding ElementName="TxtReturnType" Path="Text"/>
+							<Binding ElementName="TxtMethodName" Path="Text"/>
+							<Binding ElementName="TxtArguments" Path="Text"/>
+						</MultiBinding>
+					</TextBlock.Text>
+				</TextBlock>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Width="405" 
+					Style="{StaticResource AllMargin}">
+			<ListView x:Name="StateEntryList" 
+					  Background="LightGray"
+					  Height="400"/>
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Center">
+				<Button x:Name="BtnAddFolder"
+						Margin="0 5 18 0"
+						Background="CadetBlue"
+						Content="Add Folder"
+						Click="BtnAddFolder_Click"
+						Width="120"/>
+				<Button x:Name="BtnCreateMachine"
+						FontWeight="Bold"
+						Margin="18 5 0 0"
+						FontSize="20"
+						Content="Create Machine"
+						Click="BtnCreateMachine_Click"
+						Background="SeaGreen"
+						Width="200"/>
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
+</Window>

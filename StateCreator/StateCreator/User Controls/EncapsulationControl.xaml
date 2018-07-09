@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="StateCreator.User_Controls.EncapsulationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StateCreator.User_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="115" d:DesignWidth="320">
+
+	<Border BorderThickness="2"
+			BorderBrush="Black">
+		<StackPanel TextBlock.FontSize="16">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Enter states:"/>
+				<Button x:Name="BtnExit" Content="X"
+					Margin="200 0 0 0"
+					Width="20"
+					Height="20"
+					FontSize="12"/>
+			</StackPanel>
+			<TextBox x:Name="TxtStates" 
+				 Text="ex: 'State1, State2, State3, etc..'" 
+				 Margin="3 "/>
+
+			<StackPanel Orientation="Horizontal">
+				<CheckBox x:Name="ChkCreateFldr" 
+				  Margin="3 3 49 3"
+				  Content="Create Folder for States" 
+				  Checked="ChkCreateFldr_Checked" 
+				  Unchecked="ChkCreateFldr_Checked"/>
+				<TextBox x:Name="TxtFldrName"
+					 Visibility="Hidden"
+					 Width="120"
+					 Text="Folder Name" />
+			</StackPanel>
+
+			<CheckBox x:Name="ChkEncapsulate" 
+				  Margin="3"
+				  Visibility="Hidden"
+				  Content="Encapsulate Namespace to Folder"/>
+		</StackPanel>
+	</Border>
+</UserControl>
